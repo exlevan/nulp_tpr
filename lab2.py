@@ -24,13 +24,11 @@ def c_calc():
     p2 = 0.15
     c_a = a_calc(4, p1, p2)
     c_b = b_calc(4, p1, p2)
-    print("BA", c_a, "BБ", c_b)
-    (branch, revenue) = max([c_a, c_b], key = itemgetter(0))
-    return (["В"] + branch, p3 * revenue)
+    return list(map(lambda x: (["В"] + x[0], p3 * x[1]), [c_a, c_b]))
 
-c = c_calc()
+[ca, cb] = c_calc()
 
-print(a, b, c)
-(branch, revenue) = max([a, b, c], key = itemgetter(0))
+print(a, b, ca, cb, sep = "\n")
+(branch, revenue) = max([a, b, ca, cb], key = itemgetter(1))
 print("Найкращий варіант:", branch)
 print("Очікуваний прибуток:", revenue, "тис. доларів")
